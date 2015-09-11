@@ -1,0 +1,21 @@
+Some text before non-instance variables, one of which has non-word characters in 
+it:
+
+<%= variable1 %><%= other_variable2 %>
+
+Additional text before an instance variable which must not be modified:
+
+<%= @instance_variable %>
+
+A loop, which also needs to be converted:
+
+<% all_addresses_ipv4.each do |address| -%>
+  allow <%= @address %>
+  allow <%= address %>
+<% end -%>
+
+A variable padded with space:
+
+  <%= variable4 %>
+
+These two variables (<%= variable5 %><%= variable6 %>) are between text.
