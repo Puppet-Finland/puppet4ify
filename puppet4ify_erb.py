@@ -48,12 +48,12 @@ if __name__ == '__main__':
     # The regular expression captures the entire variable definition and the
     # variable name inside it, naming the latter as "varname". Then a "@" is
     # added in front of the variable name if not yet present.
-    p=re.compile(r'(<%=\s?(?P<varname>[\d\w]*?)\s?%>)+?')
+    p=re.compile(r'(?P<prepad><%=\s*)(?P<varname>[\d\w]+)(?P<postpad>\s*-?%>)')
 
     # The args.infile contains an array, even if we only allow one input file
     for file in args.infile:
         for line in file:
-            replaced = p.sub('<%= @\g<varname> %>', line)
+            replaced = p.sub('\g<prepad>@\g<varname>\g<postpad>', line)
             if not line == replaced and args.debug:
                 print '-'+line.rstrip()
                 print '+'+replaced.rstrip()

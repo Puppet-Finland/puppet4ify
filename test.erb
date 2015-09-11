@@ -18,4 +18,20 @@ A variable padded with space:
 
   <%= variable4 %>
 
-These two variables (<%= variable5 %><%= variable6 %>) are between text.
+A variable which strips a linefeed:
+
+<%= variable5 -%>
+
+These two variables (<%= variable6 %><%= variable7 %>) are between text.
+
+Variable with excess spaces:
+
+<%=      variable8     %>
+
+Variable with underscore in the name:
+
+<%= my_variable9 %>
+
+Empty variable name:
+
+<%= %>
