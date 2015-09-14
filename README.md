@@ -25,3 +25,21 @@ Change content of real file in-place:
 # TODO
 
 * Handle array variables / iterators
+
+# Bugs
+
+The puppet4ify_erb.py script converts variables into instance variables also 
+where is shouldn't. This affects iteration first and foremost:
+
+    <% @locales.each do |locale| -%>
+    <%= @locale %>
+    <% end -%>
+
+This will not work, because @locale is set to undef here. the correct syntax is
+
+    <% @locales.each do |locale| -%>
+    <%= locale %>
+    <% end -%>
+
+Trying to catch these in a generic way would be difficult, so please check the 
+diffs (-d --noop) carefully and make the fixes that are necessary afterwards.
